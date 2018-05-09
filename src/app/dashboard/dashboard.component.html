@@ -1,0 +1,266 @@
+<mat-toolbar color="primary">
+  <mat-icon class="icon-20">trending_up</mat-icon>
+  <span>FLEX API Test Harness</span>
+  <span class="fill-space"></span>
+</mat-toolbar>
+
+<div class="container">
+  <br/>
+  <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+    <div class="row">
+      <div class="col-sm-3">
+        <h4>SUBMIT</h4>
+        <input type="text" name="dmsId" [(ngModel)]="DMSId" class="form-control textboxcontrol" placeholder="DMS ID" id='dmsId' readonly
+        />
+        <div class='form-group'>Dealer State
+          <select type="string" [(ngModel)]="dealerState" name="r_name">
+            <option *ngFor="let c of dealerStates" [ngValue]="c.id">{{c.name}}</option>
+          </select>
+        </div>
+        <div class='form-group'>
+          <input type="text" name="ssn" [(ngModel)]="ssn" class="form-control textboxcontrol col-sm-6" placeholder="SSN" id='ssn' />
+          <div class='form-check'>
+            <input type="checkbox" name="noSSN" [(ngModel)]="appNoSSN" class="form-check-input" id='includeCoApp' />
+            <label for="noSSN" class='form-check-label'>no SSN</label>
+          </div>
+        </div>
+        <div style='clear:both'></div>
+        <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="appFirstName" class="form-control textboxcontrol" placeholder="First name"
+          id='firstName' />
+        <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="appLastName" class="form-control textboxcontrol" placeholder="Last name"
+          id='lastName' />
+        <input type="text" name="appId" #lastName="ngModel" [(ngModel)]="dmsAppId" class="form-control textboxcontrol" placeholder="DMS App Id"
+          id='appId' />
+        <input type="text" name="phoneNumber" #firstName="ngModel" [(ngModel)]="phoneNumber" class="form-control textboxcontrol"
+          placeholder="Phone number" id='phoneNumber' />
+        <div class='form-check'>
+          <input type="checkbox" name="produceAllForms" [(ngModel)]="produceAllForms" class="form-check-input" id='produceAllForms'
+          />
+          <label for="produceAllForms" class='form-check-label'>Produce all forms</label>
+        </div>
+        <div class='form-check'>
+          <input type="checkbox" name="produceCallback" [(ngModel)]="produceCallback" class="form-check-input" id='produceCallback'
+          />
+          <label for="produceCallback" class='form-check-label'>Produce callback</label>
+        </div>
+        <br/>
+        <input type="checkbox" name="includeCoApp" [(ngModel)]="includeCoApp" class="form-check-input" id='includeCoApp' />
+        <label for="includeCoApp" class='form-check-label'>with Coapp</label>
+        <div class='form-group'>
+          <input type="text" name="coAppSSN" [(ngModel)]="coAppSSN" class="form-control textboxcontrol col-sm-6" placeholder="co app ssn"
+            id='coAppSSN' />
+          <input type="checkbox" name="coAppNoSSN" [(ngModel)]="coAppNoSSN" class="form-check-input" id='coAppNoSSN' />
+          <label for="coAppNoSSN" class='form-check-label'>No SSN</label>
+        </div>
+        <button (click)="submitApp()" class="btn btn-primary">Submit customer application</button>
+        <span class='progress'>{{addProgress}}</span>
+      </div>
+      <div class="col-sm-3">
+        <h4>UPDATE</h4>
+        <div class='form-group'>
+          Loan status:
+          <label>{{updateLoanStatus}}</label>
+        </div>
+        <label for="appId">FLEX App Id</label>
+        <input id='appId' type="text" name="appId" [(ngModel)]="appId" class="form-control textboxcontrol" placeholder="FLEX app id"
+          #appNum="ngModel" />
+
+        <div class="widget-head">
+          <h4>Applicant</h4>
+        </div>
+        <div class='well well-sm'>
+          <label for="updateFirstName">First name</label>
+          <input type="text" name="updateFirstName" #firstName="ngModel" [(ngModel)]="updateFirstName" class="form-control textboxcontrol"
+            placeholder="First name" id='updateFirstName' />
+          <label for="updateLastName">Last name</label>
+          <input type="text" name="updateLastName" [(ngModel)]="updateLastName" class="form-control textboxcontrol" placeholder="Last name"
+            id='updateLastName' />
+          <label for="updatePhoneNumber" class='form-check-label'>Phone number</label>
+          <input type="text" name="updatePhoneNumber" #firstName="ngModel" [(ngModel)]="updatePhoneNumber" class="form-control textboxcontrol"
+            placeholder="Phone number" id='updatePhoneNumber' />
+          <label for="updateCity">City</label>
+          <input type="text" name="updateCity" #firstName="ngModel" [(ngModel)]="updateCity" class="form-control textboxcontrol" placeholder="City"
+            id='updateCity' />
+          <label for="updatePrevCity">Previous city</label>
+          <input type="text" name="updatePrevCity" #firstName="ngModel" [(ngModel)]="updatePrevCity" class="form-control textboxcontrol"
+            placeholder="Prev City" id='updatePrevCity' />
+        </div>
+        <div class="widget-head">
+          <h4>Employment</h4>
+        </div>
+        <div class='well well-sm'>
+          <label for="updateTimeOnJob">Time on job Yrs</label>
+          <input type="text" name="updateTimeOnJob" [(ngModel)]="updateTimeOnJob" class="form-control textboxcontrol" placeholder="Time on job"
+            id='updateTimeOnJob' />
+          <label for="updatePrevTimeOnJob">Prev time on job Yrs</label>
+          <input type="text" name="updatePrevTimeOnJob" [(ngModel)]="updatePrevTimeOnJob" class="form-control textboxcontrol" placeholder="Previous time on job"
+            id='updatePrevTimeOnJob' />
+        </div>
+        <div class="widget-head">
+          <h4>Vehicle</h4>
+        </div>
+        <div class='form-horizontal well well-sm'>
+          <label for='updateVin'>VIN</label>
+          <input type="text" name="updateVin" [(ngModel)]="updateVin" class="form-control textboxcontrol" placeholder="VIN" id='updateVin'
+          />
+          <label for='updateMake'>Make</label>
+          <input type="text" name="updateMake" [(ngModel)]="updateMake" class="form-control textboxcontrol" placeholder="Make" id='updateMake'
+          />
+          <label for='updateModel'>Model</label>
+          <input type="text" name="updateModel" [(ngModel)]="updateModel" class="form-control textboxcontrol" placeholder="Model" id='updateModel'
+          />
+          <label for='updateYear'>Year</label>
+          <input type="text" name="updateYear" [(ngModel)]="updateYear" class="form-control textboxcontrol" placeholder="Year" id='updateYear'
+          />
+
+          <label for="updateMiles">Miles</label>
+          <input type="text" name="updateMiles" [(ngModel)]="updateMiles" class="form-control textboxcontrol" placeholder="Miles" id='updateMiles'
+          />
+        </div>
+        <div class="widget-head">
+          <h4>Structure</h4>
+        </div>
+        <div class='well well-sm'>
+          <label for="updateSalePrice">Sale price</label>
+          <input type="text" name="updateSalePrice" [(ngModel)]="updateSalePrice" class="form-control textboxcontrol" placeholder="Sale price"
+            id='updateSalePrice' />
+          <label for="updateCashDown">Cash down</label>
+          <input type="text" name="updateCashDown" [(ngModel)]="updateCashDown" class="form-control textboxcontrol" placeholder="Cash down"
+            id='updateCashDown' />
+          <label for="updateRate">Rate</label>
+          <input type="text" name="updateRate" [(ngModel)]="updateRate" class="form-control textboxcontrol" placeholder="Rate" id='updateRate'
+          />
+          <label for="updateTerm">Term</label>
+          <input type="text" name="updateTerm" [(ngModel)]="updateTerm" class="form-control textboxcontrol" placeholder="Rate" id='updateTerm'
+          />
+        </div>
+        <label for="updateDMSId" class='form-check-label'>DMS Id</label>
+        <input type="text" name="updateDMSId" [(ngModel)]="updateDMSId" class="form-control textboxcontrol" placeholder="DMS ID"
+          id='updateDMSId' />
+
+        <label for="updateAppId">DMS App id</label>
+        <input type="text" name="updateAppId" #lastName="ngModel" [(ngModel)]="updateDMSAppId" class="form-control textboxcontrol"
+          placeholder="DMS App Id" id='updateDMSAppId' readonly/>
+        <div class='form-check'>
+          <input type="checkbox" name="updateNoSsn" [(ngModel)]="updateNoSsn" class="form-check-input" id='updateNoSsn' />
+          <label for="updateNoSsn" class='form-check-label'>no SSN</label>
+        </div>
+        <br/>
+      </div>
+      <div class="col-sm-3">
+        <div class='form-group'>
+          <input type="checkbox" name="updateAddCoApp" [(ngModel)]="updateAddCoApp" class="form-check-input" id='updateAddCoApp' />
+          <label for="updateAddCoApp" class='form-check-label'>Add Coapp</label>
+        </div>
+        <label for="updateCoAppSSN" class='form-check-label'>SSN</label>
+        <div class='form-group'>
+          <input type="text" name="updateCoAppSSN" [(ngModel)]="updateCoAppSSN" class="form-control textboxcontrol col-sm-6" placeholder="co app ssn"
+            id='updateCoAppSSN' />
+          <input type="checkbox" name="updateCoAppNoSSN" [(ngModel)]="updateCoAppNoSSN" class="form-check-input" id='updateCoAppNoSSN'
+          />
+          <label for="updateCoAppNoSSN" class='form-check-label'>No SSN</label>
+        </div>
+        <label for="updateCoAppPhoneNumber">Phone number</label>
+        <input type="text" name="updateCoAppPhoneNumber" #firstName="ngModel" [(ngModel)]="updateCoAppPhoneNumber" class="form-control textboxcontrol"
+          placeholder="Co app phone number" id='updateCoAppPhoneNumber' />
+        <label for="coStreet">Street</label>
+        <input type="text" name="coStreet" [(ngModel)]="coStreet" class="form-control textboxcontrol" placeholder="CoApp street"
+          id='coStreet' />
+        <div class='form-group'>
+          <select type="string" [(ngModel)]="relationship" name="r_name">
+            <option *ngFor="let c of listOptions" [ngValue]="c.id">{{c.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h4>METHODS</h4>
+
+        <div>
+          <a (click)="getApp()" class="btn btn-link">Get application</a>
+        </div>
+        <div>
+          <a (click)="updateApp(0)" class="btn btn-link">Update application</a>
+        </div>
+        <br/>
+        <div>
+          <a (click)="updateApp(1)" class="btn btn-link">Revise deal</a>
+        </div>
+        <div>
+          <input type="checkbox" name="reviseProduceAllForms" [(ngModel)]="reviseProduceAllForms" class="form-check-input" id='reviseProduceAllForms'
+          />
+          <label for="reviseProduceAllForms" class='form-check-label'>Produce all forms</label>
+        </div>
+        <div>
+          <input type="checkbox" name="reviseProduceCallback" [(ngModel)]="reviseProduceCallback" class="form-check-input" id='reviseProduceCallback'
+          />
+          <label for="reviseProduceAllForms" class='form-check-label'>Produce callback</label>
+        </div>
+        <br/>
+        <div>
+          <a (click)="updateApp(2)" class="btn btn-link">Maximize deal</a>
+        </div>
+        <div>
+          <input type="checkbox" name="maxProduceAllForms" [(ngModel)]="maxProduceAllForms" class="form-check-input" id='maxProduceAllForms'
+          />
+          <label for="maxProduceAllForms" class='form-check-label'>Produce all forms</label>
+        </div>
+        <div>
+          <input type="checkbox" name="maxProduceCallback" [(ngModel)]="maxProduceCallback" class="form-check-input" id='maxProduceCallback'
+          />
+          <label for="maxProduceCallback" class='form-check-label'>Produce callback</label>
+        </div>
+        <br/>
+        <div>
+          <a class="btn btn-link" (click)='generateAllForms()'>Generate all forms</a>
+        </div>
+        <div>
+          <a class='btn btn-link' (click)='cancelApp()'>Cancel application</a>
+        </div>
+        <br/>
+        <br/>
+        <div *ngIf='updateProgress'>
+          <!-- <mat-progress-spinner></mat-progress-spinner> -->
+          <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <p class='error'>
+          {{errorMessage}}
+        </p>
+      </div>
+    </div>
+  </form>
+  <pre *ngIf='errorObject'>{{errorObject | json}}</pre>
+  <h3>Request</h3>
+  <pre>{{ customerApp | json }}</pre>
+  <h3>Response</h3>
+  <br/>
+  <h4>Application</h4>
+  <pre *ngIf='callbackViewModel'>{{ callbackViewModel.callbackResponse.custApp | json }}</pre>
+  <br/>
+  <div *ngIf='callbackViewModel'>
+    <div *ngIf='callbackViewModel.forms'>
+      <h4>FILES</h4>
+      <pre *ngIf='callbackViewModel.forms.callbackFilename'><a target='_blank' href='{{callbackViewModel.forms.callbackFilename}}'>Callback</a></pre>
+      <pre *ngIf='callbackViewModel.forms.creditAppFilename'><a target='_blank' href='{{callbackViewModel.forms.creditAppFilename}}'>Credit App</a></pre>
+      <pre *ngIf='callbackViewModel.forms.gapFilename'><a target='_blank' href='{{callbackViewModel.forms.gapFilename}}'>GAP form</a></pre>
+      <pre *ngIf='callbackViewModel.forms.gpsFilename'><a target='_blank' href='{{callbackViewModel.forms.gpsFilename}}'>GPS form</a></pre>
+    </div>
+  </div>
+  <br>
+  <div *ngIf='callbackViewModel'>
+    <div *ngIf='callbackViewModel.callbackResponse'>
+      <div *ngIf='callbackViewModel.callbackResponse.callback'>
+        <h4>GAP + DEVICE</h4>
+        <pre *ngIf='callbackViewModel'>{{ callbackViewModel.callbackResponse.callback[0] | json }}</pre>
+        <br/>
+        <h4>GAP NO DEVICE</h4>
+        <pre *ngIf='callbackViewModel'>{{ callbackViewModel.callbackResponse.callback[1] | json }}</pre>
+        <br/>
+        <h4>DEVICE NO GAP</h4>
+        <pre *ngIf='callbackViewModel'>{{ callbackViewModel.callbackResponse.callback[2] | json }}</pre>
+        <br/>
+        <h4>NO PRODUCTS</h4>
+        <pre *ngIf='callbackViewModel'>{{ callbackViewModel.callbackResponse.callback[3] | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
